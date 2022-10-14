@@ -60,7 +60,7 @@ function enableCam(event) {
 }
 
 function connect() {
-    var socket = new SockJS(local_url + '/prediction');
+    var socket = new SockJS(base_url + '/prediction');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/engine-listen', function (message) {
@@ -131,10 +131,15 @@ webgazer.setGazeListener(function (data, elapsedTime) {
 }).begin();
 
 async function predictWebcam() {
-    const model_Raf = await tf.loadLayersModel("/tf_models/adam/model.json", false)
-    const model_Affectnet = await tf.loadLayersModel("/tf_models/mobile/model.json", false)
+    tf.engine().startScope();
+
+
+    var model_Raf = await tf.loadLayersModel("/tf_models/adam/model.json", false)
+    var model_Affectnet = await tf.loadLayersModel("/tf_models/mobile/model.json", false)
+
     cam_ctx.drawImage(video, 0, 0, width, height);
-    const frame = cam_ctx.getImageData(0, 0, width, height);
+    var frame = cam_ctx.getImageData(0, 0, width, height);
+
     model.estimateFaces(frame).then(function (predictions) {
         if (predictions.length === 1) {
             count++;
@@ -180,9 +185,9 @@ async function predictWebcam() {
                 "disgust": parseFloat(predicted_Affect[0][1] * 100).toFixed(2),
 
             }
-            caches.delete(model_Raf);
-            caches.delete(model_Affectnet);
+            delete image_tensor;
             sendValues(valueObj_Affect, valueObj_Raf);
+            tf.engine().endScope();
             if (control) {
                 window.requestAnimationFrame(predictWebcam);
             }
@@ -196,3 +201,4 @@ document.addEventListener('scroll', function (e) {
     if (control && (window.scrollY < 5400 || window.scrollY > 6000))
         resetEverything()
 })
+

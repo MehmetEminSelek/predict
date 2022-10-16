@@ -1,27 +1,61 @@
-/////////////////// EMOTION RECOGNIZER///////////////
-/////////////////////////////////////////////////////////////
 const video = document.getElementById('webcam');
 const instruction = document.getElementById('caminstruct');
-const liveView = document.getElementById('liveView');
 const enableWebcamButton = document.getElementById('webcamButton');
 const instructionText = document.getElementById("camiText");
 const webcam_canvas = document.getElementById('webcam_canvas');
 const cam_ctx = webcam_canvas.getContext('2d');
-const width = 360;
-const height = 240;
+const width = 640
+const height = 480
 var model = undefined;
-var model_emotion = undefined;
+var raf_model = undefined;
+var affect_model = undefined;
 var control = false;
-var coordinates = [];
-var pictures = [];
-var base_url = "http://localhost:3000";
-var local_url = "http://192.168.1.106:3000";
-var stompClient = null;
+var testSubjectName = "Unknown";
+var experimentNo = 0;
 var count = 0;
-
-var date = new Date();
+const base_url = "http://localhost:3000";
+xprediction = 0;
+yprediction = 0;
 
 connect();
+startWebgazer();
+
+function startWebgazer() {
+    webgazer
+        .showVideo(false)
+        .setGazeListener(function (data, clock) {
+            if (data != null) {
+                xprediction = data.x;
+                yprediction = data.y;
+            }
+        })
+        .showPredictionPoints(false)
+        .begin()
+}
+
+function connect() {
+    var socket = new SockJS(base_url + '/prediction');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        stompClient.subscribe('/engine-listen', function (message) {
+            handleEngineStart(JSON.parse(message.body))
+        });
+    });
+}
+
+function handleEngineStart(message) {
+    if (message.message == "start" && message.sender == "engine") {
+        enableCam();
+        testSubjectName = message.testSubjectName;
+        experimentNo = message.experimentNo;
+    } else if (message.message == "stop" && message.sender == "engine") {
+        resetEverything();
+    }
+}
+
+function sendValues(value) {
+    stompClient.send("/prediction", {}, JSON.stringify(value));
+}
 
 var errorCallback = function (error) {
     if (error.name == 'NotAllowedError') { instructionText.innerHTML = "Webcam Access Not Allowed"; }
@@ -41,44 +75,33 @@ function resetEverything() {
 
     video.srcObject = null;
     instruction.style.display = "flex";
+    document.getElementById("cam_chart_main").style.left = "-225px";
+    // 		document.getElementById("cam_chart_main").style.left = "-253px";
 }
 
+// Function to handle enableWebcamButton click.
+// Takes video feed and the call predictWebcam function.
 function enableCam(event) {
+    // getUsermedia parameters to force video but not audio.
     control = true;
     const constraints = {
         audio: false,
-        video: { width: 360, height: 240 },
+        video: { width: 640, height: 480 },
     };
+    // Activate the webcam stream.
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         video.srcObject = stream;
         instruction.style.display = "none";
+        document.getElementById("cam_chart_main").style.left = 0;
         video.addEventListener('loadeddata', predictWebcam);
         cameraaccess = true;
-        enableWebcamButton.style.display = "none";
     })
         .catch(errorCallback)
 }
 
-function connect() {
-    var socket = new SockJS(base_url + '/prediction');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/engine-listen', function (message) {
-            handleEngineStart(JSON.parse(message.body))
-        });
-    });
-}
-
-function handleEngineStart(message) {
-    if (message.sender == "start" && message.sender == "GameHub") {
-        predictWebcam();
-    }
-}
-
-function sendValues(valueObj_Affect, valueObj_Raf) {
-    stompClient.send("/prediction", {}, JSON.stringify(valueObj_Raf));
-    stompClient.send("/prediction", {}, JSON.stringify(valueObj_Affect));
-}
+//The main functioning starts from here. Check if webcam is supported/acceesible or not.
+// Then loads the models and then wait for webcam permission.
+// Check if webcam access is supported.
 
 function getUserMediaSupported() {
     return (navigator.mediaDevices &&
@@ -86,7 +109,7 @@ function getUserMediaSupported() {
 }
 if (getUserMediaSupported()) {
 
-    if (model && model_emotion) {
+    if (model && (raf_model || affect_model)) {
         enableWebcamButton.style.display = "inline-flex";
         instructionText.innerHTML = "Please provide Webcam Access."
     }
@@ -94,14 +117,22 @@ if (getUserMediaSupported()) {
     else {
         blazeface.load().then(function (loadedModel) {
             model = loadedModel;
-            if (model_emotion) {
+            if (raf_model || affect_model) {
                 enableWebcamButton.style.display = "inline-flex";
                 instructionText.innerHTML = "Please provide Webcam Access."
             }
         });
 
+        tf.loadLayersModel('/tf_models/adam/model.json', false).then(function (loadedModel) {
+            raf_model = loadedModel;
+            if (model) {
+                enableWebcamButton.classList.remove("removed");
+                instructionText.innerHTML = "Please provide Webcam Access."
+            }
+        });
+
         tf.loadLayersModel('/tf_models/mobile/model.json', false).then(function (loadedModel) {
-            model_emotion = loadedModel;
+            affect_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
                 instructionText.innerHTML = "Please provide Webcam Access."
@@ -109,37 +140,20 @@ if (getUserMediaSupported()) {
         });
     }
     enableWebcamButton.addEventListener('click', enableCam);
-
 } else {
     console.warn('getUserMedia() is not supported by your browser');
     instructionText.innerHTML = "getUserMedia() is not supported by your browser"
 }
 
-webgazer.setGazeListener(function (data, elapsedTime) {
-    if (data == null) {
-        return;
-    }
-    var xprediction = data.x; //these x coordinates are relative to the viewport
-    var yprediction = data.y; //these y coordinates are relative to the viewport //elapsed time is based on time since begin was called
-    coordinate_Obj = {
-        "x": xprediction,
-        "y": yprediction,
-    }
-    if (data = ! null) {
-        document.getElementById("webgazerVideoContainer").style.display = "none";
-    }
-}).begin();
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 
 async function predictWebcam() {
-    tf.engine().startScope();
-
-
-    var model_Raf = await tf.loadLayersModel("/tf_models/adam/model.json", false)
-    var model_Affectnet = await tf.loadLayersModel("/tf_models/mobile/model.json", false)
-
+    await sleep(1000);
     cam_ctx.drawImage(video, 0, 0, width, height);
-    var frame = cam_ctx.getImageData(0, 0, width, height);
-
+    const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {
         if (predictions.length === 1) {
             count++;
@@ -150,55 +164,51 @@ async function predictWebcam() {
             left = landmark[5][0];
             length = (left - right) / 2 + 5;
             const frame2 = cam_ctx.getImageData(nosex - length, nosey - length, 2 * length, 2 * length);
-            var image_tensor = tf.browser.fromPixels(frame2);
-            image_tensor = image_tensor.div(255);
-            image_tensor = image_tensor.resizeBilinear([224, 224]).toFloat().expandDims();
-            const result_Raf = model_Raf.predict(image_tensor);
-            const result_Affect = model_Affectnet.predict(image_tensor);
-            const predicted_Raf = result_Raf.arraySync();
-            const predicted_Affect = result_Affect.arraySync();
-            valueObj_Raf = {
+            var image_tensor = tf.browser.fromPixels(frame2).div(255).resizeBilinear([224, 224]).toFloat().expandDims();
+            var result = raf_model.predict(image_tensor);
+            var predictedValue = result.arraySync();
+            value_raf = {
                 "id": count,
-                "sender": "AMINI SİKİM",
-                "experimentCount": "1",
+                "sender": testSubjectName,
+                "experimentCount": experimentNo,
                 "model": "Raf",
-                "neutral": parseFloat(predicted_Raf[0][4] * 100).toFixed(2),
-                "happy": parseFloat(predicted_Raf[0][3] * 100).toFixed(2),
-                "sad": parseFloat(predicted_Raf[0][5] * 100).toFixed(2),
-                "angry": parseFloat(predicted_Raf[0][0] * 100).toFixed(2),
-                "fear": parseFloat(predicted_Raf[0][2] * 100).toFixed(2),
-                "surprise": parseFloat(predicted_Raf[0][6] * 100).toFixed(2),
-                "disgust": parseFloat(predicted_Raf[0][1] * 100).toFixed(2),
-
+                "neutral": parseFloat(predictedValue[0][4] * 100).toFixed(2),
+                "happy": parseFloat(predictedValue[0][3] * 100).toFixed(2),
+                "sad": parseFloat(predictedValue[0][5] * 100).toFixed(2),
+                "angry": parseFloat(predictedValue[0][0] * 100).toFixed(2),
+                "fear": parseFloat(predictedValue[0][2] * 100).toFixed(2),
+                "surprise": parseFloat(predictedValue[0][6] * 100).toFixed(2),
+                "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
+                "xcord": xprediction.toFixed(2),
+                "ycord": yprediction.toFixed(2),
             }
-            valueObj_Affect = {
+            result = affect_model.predict(image_tensor);
+            predictedValue = result.arraySync();
+            value_affect = {
                 "id": count,
-                "sender": "AMINI GÖTÜNÜ SİKİM YARRAĞIMIN KAFASI",
-                "experimentCount": "1",
-                "model": "Affectnet",
-                "neutral": parseFloat(predicted_Affect[0][4] * 100).toFixed(2),
-                "happy": parseFloat(predicted_Affect[0][3] * 100).toFixed(2),
-                "sad": parseFloat(predicted_Affect[0][5] * 100).toFixed(2),
-                "angry": parseFloat(predicted_Affect[0][0] * 100).toFixed(2),
-                "fear": parseFloat(predicted_Affect[0][2] * 100).toFixed(2),
-                "surprise": parseFloat(predicted_Affect[0][6] * 100).toFixed(2),
-                "disgust": parseFloat(predicted_Affect[0][1] * 100).toFixed(2),
-
+                "sender": testSubjectName,
+                "experimentCount": experimentNo,
+                "model": "Affect",
+                "neutral": parseFloat(predictedValue[0][4] * 100).toFixed(2),
+                "happy": parseFloat(predictedValue[0][3] * 100).toFixed(2),
+                "sad": parseFloat(predictedValue[0][5] * 100).toFixed(2),
+                "angry": parseFloat(predictedValue[0][0] * 100).toFixed(2),
+                "fear": parseFloat(predictedValue[0][2] * 100).toFixed(2),
+                "surprise": parseFloat(predictedValue[0][6] * 100).toFixed(2),
+                "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
+                "xcord": xprediction.toFixed(2),
+                "ycord": yprediction.toFixed(2),
             }
-            delete image_tensor;
-            sendValues(valueObj_Affect, valueObj_Raf);
-            tf.engine().endScope();
-            if (control) {
-                window.requestAnimationFrame(predictWebcam);
-            }
+            sendValues(value_raf);
+            sendValues(value_affect);
         }
 
+        // Call this function again to keep predicting when the browser is ready.
+        if (control)
+            window.requestAnimationFrame(predictWebcam);
     });
 }
-
-
 document.addEventListener('scroll', function (e) {
     if (control && (window.scrollY < 5400 || window.scrollY > 6000))
         resetEverything()
 })
-

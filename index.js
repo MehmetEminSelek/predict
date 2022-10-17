@@ -13,7 +13,7 @@ var control = false;
 var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
-const base_url = "http://localhost:3000";
+const base_url = "http://64.225.94.117:8000";
 xprediction = 0;
 yprediction = 0;
 
@@ -188,7 +188,7 @@ async function predictWebcam() {
                 "id": count,
                 "sender": testSubjectName,
                 "experimentCount": experimentNo,
-                "model": "Affect",
+                "model": "Affectnet",
                 "neutral": parseFloat(predictedValue[0][4] * 100).toFixed(2),
                 "happy": parseFloat(predictedValue[0][3] * 100).toFixed(2),
                 "sad": parseFloat(predictedValue[0][5] * 100).toFixed(2),

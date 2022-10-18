@@ -76,19 +76,15 @@ function resetEverything() {
     video.srcObject = null;
     instruction.style.display = "flex";
     document.getElementById("cam_chart_main").style.left = "-225px";
-    // 		document.getElementById("cam_chart_main").style.left = "-253px";
+
 }
 
-// Function to handle enableWebcamButton click.
-// Takes video feed and the call predictWebcam function.
 function enableCam(event) {
-    // getUsermedia parameters to force video but not audio.
     control = true;
     const constraints = {
         audio: false,
         video: { width: 640, height: 480 },
     };
-    // Activate the webcam stream.
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         video.srcObject = stream;
         instruction.style.display = "none";
@@ -98,10 +94,6 @@ function enableCam(event) {
     })
         .catch(errorCallback)
 }
-
-//The main functioning starts from here. Check if webcam is supported/acceesible or not.
-// Then loads the models and then wait for webcam permission.
-// Check if webcam access is supported.
 
 function getUserMediaSupported() {
     return (navigator.mediaDevices &&
@@ -202,8 +194,6 @@ async function predictWebcam() {
             sendValues(value_raf);
             sendValues(value_affect);
         }
-
-        // Call this function again to keep predicting when the browser is ready.
         if (control)
             window.requestAnimationFrame(predictWebcam);
     });

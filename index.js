@@ -14,7 +14,8 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-const base_url = "http://64.225.94.117:8000";
+//const base_url = "http://64.225.94.117:8000";
+const base_url = "http://192.168.1.107:8000";
 xprediction = 0;
 yprediction = 0;
 

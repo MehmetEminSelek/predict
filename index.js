@@ -13,6 +13,7 @@ var control = false;
 var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
+var gameData = "running";
 const base_url = "http://64.225.94.117:8000";
 xprediction = 0;
 yprediction = 0;
@@ -38,18 +39,20 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/engine-listen', function (message) {
-            handleEngineStart(JSON.parse(message.body))
+            handleEngineMessages(JSON.parse(message.body))
         });
     });
 }
 
-function handleEngineStart(message) {
+function handleEngineMessages(message) {
     if (message.message == "start" && message.sender == "engine") {
         enableCam();
         testSubjectName = message.testSubjectName;
         experimentNo = message.experimentNo;
     } else if (message.message == "stop" && message.sender == "engine") {
         resetEverything();
+    } else if (message.message != "running" && message.sender == "data") {
+        gameData = message.message
     }
 }
 
@@ -173,6 +176,7 @@ async function predictWebcam() {
                 "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
                 "xcord": xprediction.toFixed(2),
                 "ycord": yprediction.toFixed(2),
+                "status": gameData
             }
             result = affect_model.predict(image_tensor);
             predictedValue = result.arraySync();
@@ -190,9 +194,11 @@ async function predictWebcam() {
                 "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
                 "xcord": xprediction.toFixed(2),
                 "ycord": yprediction.toFixed(2),
+                "status": gameData
             }
             sendValues(value_raf);
             sendValues(value_affect);
+            gameData = "running";
         }
         if (control)
             window.requestAnimationFrame(predictWebcam);

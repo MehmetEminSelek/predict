@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "prediction",
+			"path": ".."
+		},
+		{
+			"name": "form",
+			"path": "../../game/form"
+		},
+		{
+			"name": "snake",
+			"path": "../../game/snake"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "prediction"
+	}
+}

@@ -39,7 +39,7 @@ www/data/src/webgazer.js
 .idea/
 docs/
 dist/*.map
-www/webgazer.js
+node_modules
 dist/*.min.js
 dist/tensorflow.js
 dist/tensorflow.commonjs2.js

@@ -10,6 +10,7 @@ let matchedCard = 0;
 let disableDeck = false;
 let isPlaying = false;
 let cardOne, cardTwo, timer;
+lifeCount = 2;
 
 function initTimer() {
     if (timeLeft <= 0) {
@@ -43,7 +44,6 @@ function matchCards(img1, img2) {
     if (img1 === img2) {
         matchedCard++;
         if (matchedCard == 6 && timeLeft > 0) {
-            location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html";
             return clearInterval(timer);           
         }
         cardOne.removeEventListener("click", flipCard);
@@ -89,7 +89,16 @@ function shuffleCard() {
 
 shuffleCard();
 
-refreshBtn.addEventListener("click", shuffleCard);
+refreshBtn.addEventListener("click" , function () {
+    lifeCount--;
+    if (lifeCount == 0) {
+        location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
+    }
+    else if (lifeCount != 0) {
+        shuffleCard();
+    }
+    
+});
 
 cards.forEach(card => {
     card.addEventListener("click", flipCard);

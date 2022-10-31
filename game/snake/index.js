@@ -89,7 +89,7 @@ function counter() {
 }
 
 dataBtn.addEventListener("click", function () {
-    location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
+    location.href = "http://127.0.0.1:5500/game/snake/index.html"
 });
 
 window.addEventListener("keydown", changeDirection);
@@ -254,6 +254,11 @@ function checkGameOver() {
 
 function displayGameOver() {
     lifeCount--;
+    dataBtn.style.display = "none";
+    if (lifeCount == 0) {
+        resetBtn.style.display = "none";
+        dataBtn.style.display = "block";
+    }
     document.getElementById("counter").style.display = "none";
     running = false;
     gameBoard.style.display = "none";

@@ -45,7 +45,7 @@ function matchCards(img1, img2) {
     if (img1 === img2) {
         matchedCard++;
         if (matchedCard == 6 && timeLeft > 0) {
-            return clearInterval(timer);           
+            return clearInterval(timer);
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
@@ -91,19 +91,22 @@ function shuffleCard() {
 
 shuffleCard();
 
-refreshBtn.addEventListener("click" , function () {
+refreshBtn.addEventListener("click", function () {
     lifeCount--;
     console.log(lifeCount);
     // if (lifeCount == 1) {
     //     document.getElementById("refresh").innerHTML = "Next";
     // }
     if (lifeCount == 0) {
-        location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
+        refreshBtn.textContent = "Next";
+        refreshBtn.addEventListener("click", function () {
+            location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
+        });
     }
     else if (lifeCount != 0) {
         shuffleCard();
     }
-    
+
 });
 
 cards.forEach(card => {

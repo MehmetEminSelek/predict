@@ -71,7 +71,7 @@ function counter() {
             counter.innerHTML = "GO!";
         }
         if (nextValue === 0) {
-            gameStart();
+            resetGame();
             clearInterval(intervalID);
             return;
         }
@@ -256,7 +256,10 @@ function displayGameOver() {
     if (lifeCount == 0) {
         resetBtn.style.display = "none";
         dataBtn.style.display = "block";
-        location.href = "http://127.0.0.1:5500/game/card/index.html";
+        dataBtn.textContent = "Next";
+        dataBtn.addEventListener("click", function () {
+            location.href = "http://127.0.0.1:5500/game/card/index.html";
+        });
     }
     document.getElementById("counter").style.display = "none";
     running = false;
@@ -279,11 +282,6 @@ function resetGame() {
     ];
     gameStart();
 };
-
-var canvasPromise = html2canvas(document.body, {
-    allowTaint: true,
-    useCORS: true
-});
 
 
 function startTimer(duration, display) {

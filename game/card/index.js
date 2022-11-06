@@ -3,7 +3,7 @@ const cards = document.querySelectorAll(".card"),
     flipsTag = document.querySelector(".flips b"),
     refreshBtn = document.querySelector(".details button");
 
-let maxTime = 60;
+let maxTime = 5;
 let timeLeft = maxTime;
 let flips = 0;
 let matchedCard = 0;
@@ -14,6 +14,7 @@ lifeCount = 2;
 
 function initTimer() {
     if (timeLeft <= 0) {
+        document.getElementById("refresh").style.display = "block";
         return clearInterval(timer);
     }
     timeLeft--;
@@ -66,6 +67,7 @@ function matchCards(img1, img2) {
 }
 
 function shuffleCard() {
+    document.getElementById("refresh").style.display = "none";
     timeLeft = maxTime;
     flips = matchedCard = 0;
     cardOne = cardTwo = "";
@@ -91,6 +93,10 @@ shuffleCard();
 
 refreshBtn.addEventListener("click" , function () {
     lifeCount--;
+    console.log(lifeCount);
+    // if (lifeCount == 1) {
+    //     document.getElementById("refresh").innerHTML = "Next";
+    // }
     if (lifeCount == 0) {
         location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
     }

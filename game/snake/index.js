@@ -13,7 +13,6 @@ const startCardBtn = document.querySelector("#startCardBtn");
 const wrapper = document.querySelector(".wrapper");
 const dataBtn = document.querySelector("#dataBtn");
 const submitBtn = document.querySelector("#submitBtn");
-const textBox = document.querySelector("#textBox").value;
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
 const boardBackground = "#D8D8D8";
@@ -43,21 +42,21 @@ let snake = [
     { x: 0, y: 0 }
 ];
 var experimentNo = 1;
-var lifeCount = 3;
-connect();
+var lifeCount = 2;
+// connect();
 
-function connect() {
-    var socket = new SockJS(base_url + '/engine');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/engine-listen', function (message) {
-        });
-    });
-}
+// function connect() {
+//     var socket = new SockJS(base_url + '/engine');
+//     stompClient = Stomp.over(socket);
+//     stompClient.connect({}, function (frame) {
+//         stompClient.subscribe('/engine-listen', function (message) {
+//         });
+//     });
+// }
 
-function sendValues(sender, code) {
-    stompClient.send("/engine", {}, JSON.stringify({ 'sender': sender, "message": code, "testSubjectName": textBox, "experimentNo": experimentNo }));
-}
+// function sendValues(sender, code) {
+//     stompClient.send("/engine", {}, JSON.stringify({ 'sender': sender, "message": code, "testSubjectName": textBox, "experimentNo": experimentNo }));
+// }
 
 function counter() {
 
@@ -101,13 +100,13 @@ startSnakeBtn.addEventListener("click", () => {
     counter();
 });
 
-startCardBtn.addEventListener("click", () => {
+// startCardBtn.addEventListener("click", () => {
 
-    gameboardContainer.style.display = "none";
-    startContainer.style.display = "none";
-    resetContainer.style.display = "none";
-    wrapper.style.display = "flex";
-});
+//     gameboardContainer.style.display = "none";
+//     startContainer.style.display = "none";
+//     resetContainer.style.display = "none";
+//     wrapper.style.display = "flex";
+// });
 
 function drawGame() {
     gameboardContainer.style.display = "none";
@@ -170,7 +169,6 @@ function moveSnake() {
     if (snake[0].x == foodX && snake[0].y == foodY) {
         score += 1;
         scoreText.textContent = score;
-        capture();
         createFood();
     }
     else {
@@ -258,6 +256,7 @@ function displayGameOver() {
     if (lifeCount == 0) {
         resetBtn.style.display = "none";
         dataBtn.style.display = "block";
+        location.href = "http://127.0.0.1:5500/game/card/index.html";
     }
     document.getElementById("counter").style.display = "none";
     running = false;
@@ -286,15 +285,6 @@ var canvasPromise = html2canvas(document.body, {
     useCORS: true
 });
 
-function capture() {
-    setInterval(async function () {
-        await canvasPromise.then((canvas) => {
-            var base64image = canvas.toDataURL("image/png");
-            base64image.crossOrigin = "anonymous"
-            pictures.push(base64image);
-        });
-    }, 1000);
-}
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;

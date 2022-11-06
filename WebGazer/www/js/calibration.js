@@ -124,7 +124,8 @@ $(document).ready(function(){
 });
 
 /**
- * Show the Calibration Points
+ * Show the C
+ * ibration Points
  */
 function ShowCalibrationPoint() {
   $(".Calibration").show();

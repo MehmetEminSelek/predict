@@ -3,7 +3,6 @@ const instruction = document.getElementById('caminstruct');
 const enableWebcamButton = document.getElementById('webcamButton');
 const instructionText = document.getElementById("camiText");
 const webcam_canvas = document.getElementById('webcam_canvas');
-const cam_ctx = webcam_canvas.getContext('2d');
 const width = 640
 const height = 480
 var model = undefined;
@@ -14,7 +13,7 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-const base_url = "http://64.225.94.117:8000";
+const base_url = "http://138.68.109.132:8000";
 //const base_url = "http://192.168.1.107:8000";
 xprediction = 0;
 yprediction = 0;
@@ -147,6 +146,7 @@ function sleep(milliseconds) {
 
 
 async function predictWebcam() {
+    const cam_ctx = webcam_canvas.getContext('2d');
     await sleep(1000);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);

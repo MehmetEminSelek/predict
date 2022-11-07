@@ -5,9 +5,7 @@ body {
 }
 
 .info {
-    border: 5cm;
-    border-radius: 5%;
-    padding: 310px;
+    padding: 100px;
     background-color: #dfe1eb;
     color: black;
     font-family: "", Helvetica, Arial, sans-serif;

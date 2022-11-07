@@ -100,7 +100,7 @@ refreshBtn.addEventListener("click", function () {
     if (lifeCount == 0) {
         refreshBtn.textContent = "Next";
         refreshBtn.addEventListener("click", function () {
-            location.href = "http://127.0.0.1:5500/WebGazer/www/calibration.html"
+            location.href = "http://164.92.186.163/WebGazer/www/calibration.html"
         });
     }
     else if (lifeCount != 0) {

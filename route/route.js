@@ -12,15 +12,15 @@ var square = "/form/informationBoards/square.html";
 
 function route(path) {
 
-    location.href = "http://127.0.0.1:5500" + path;
+    location.href = "http://164.92.186.163" + path;
 
 }
 
 //pop the new tab on second screen
 function routeGame() {
 
-    window.open("http://127.0.0.1:5500/form/welcome/index.html", "http://127.0.0.1:5500/form/welcome/index.html", "width=700,height=500,screenLeft=2500,screenTop=500");
-    location.href = "http://127.0.0.1:5502/form/index.html";
+    window.open("http://164.92.186.163/form/welcome/index.html", "http://164.92.186.163/form/welcome/index.html", "width=700,height=500,screenLeft=2500,screenTop=500");
+    location.href = "http://161.35.209.66/form/index.html";
     // popupCenter({url: 'http://127.0.0.1:5502/form/index.html', title: 'xtf', w: 900, h: 500});
 }
 

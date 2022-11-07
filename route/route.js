@@ -16,11 +16,10 @@ function route(path) {
 
 }
 
-
 //pop the new tab on second screen
 function routeGame() {
 
-    window.open("http://127.0.0.1:5500/index.html", "http://127.0.0.1:5500/index.html", "width=700,height=500,screenLeft=2500,screenTop=500");
+    window.open("http://127.0.0.1:5500/form/welcome/index.html", "http://127.0.0.1:5500/form/welcome/index.html", "width=700,height=500,screenLeft=2500,screenTop=500");
     location.href = "http://127.0.0.1:5502/form/index.html";
     // popupCenter({url: 'http://127.0.0.1:5502/form/index.html', title: 'xtf', w: 900, h: 500});
 }

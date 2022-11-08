@@ -88,7 +88,7 @@ function counter() {
 }
 
 dataBtn.addEventListener("click", function () {
-    location.href = "http://164.92.186.163/game/snake/index.html"
+    route(snakeGame);
 });
 
 window.addEventListener("keydown", changeDirection);
@@ -258,7 +258,7 @@ function displayGameOver() {
         dataBtn.style.display = "block";
         dataBtn.textContent = "Next";
         dataBtn.addEventListener("click", function () {
-            location.href = "http://164.92.186.163/game/card/index.html";
+            route(cardGame);
         });
     }
     document.getElementById("counter").style.display = "none";

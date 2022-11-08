@@ -9,24 +9,29 @@ var preGame2 = "/form/informationBoards/pregame2.html";
 var will = "/form/informationBoards/will.html";
 var info = "/form/subjectInfo/info.html";
 var square = "/form/informationBoards/square.html";
+var webgazer_url = "/WebGazer/www/calibration.html";
+var welcome = "/form/welcome/index.html";
+var game_form = "/form/index.html";
+// var predict_url = "http://127.0.0.1:5500"
+var predict_url = "http://164.92.186.163"
+// var game_url = "http://127.0.0.1:5502"
+var game_url = "http://161.35.209.66"
+
 
 function route(path) {
 
-    location.href = "http://164.92.186.163" + path;
+    location.href = predict_url + path;
 
 }
 
-//pop the new tab on second screen
 function routeGame() {
 
-    window.open("http://164.92.186.163/form/welcome/index.html", "http://164.92.186.163/form/welcome/index.html", "width=700,height=500,screenLeft=2500,screenTop=500");
-    location.href = "http://161.35.209.66/form/index.html";
-    // popupCenter({url: 'http://127.0.0.1:5502/form/index.html', title: 'xtf', w: 900, h: 500});
+    window.open(predict_url + welcome, predict_url + welcome, "width=700,height=500,screenLeft=2500,screenTop=500");
+    location.href = game_url + game_form;
 }
 
 
 const popupCenter = ({ url, title, w, h }) => {
-    // Fixes dual-screen position                             Most browsers      Firefox
     const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
     const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
 

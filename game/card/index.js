@@ -12,6 +12,8 @@ let isPlaying = false;
 let cardOne, cardTwo, timer;
 lifeCount = 2;
 
+localStorage.setItem("init", true);
+
 function initTimer() {
     if (timeLeft <= 0) {
         document.getElementById("refresh").style.display = "block";
@@ -100,7 +102,7 @@ refreshBtn.addEventListener("click", function () {
     if (lifeCount == 0) {
         refreshBtn.textContent = "Next";
         refreshBtn.addEventListener("click", function () {
-            location.href = "http://164.92.186.163/WebGazer/www/calibration.html"
+            route(webgazer_url)
         });
     }
     else if (lifeCount != 0) {

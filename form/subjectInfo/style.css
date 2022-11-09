@@ -1,4 +1,5 @@
 html, body {
+    background-color: #dfe1eb;
     min-height: 100%;
     }
     body, div, form, input, select, p { 
@@ -39,7 +40,7 @@ html, body {
     font-size: 72px;
     }
     form {
-    background: rgba(0, 0, 0, 0.7); 
+    background: #11324D;
     }
     .title {
     display: flex;
@@ -115,7 +116,7 @@ html, body {
         padding: 5px 15px 5px 15px;
         vertical-align: baseline;
         border-radius: 100vw;
-        background: rgb(216, 216, 216);
+        background: #11324D;
         font-weight: bold;
         font-size: 20px;
         border: none;
@@ -127,5 +128,6 @@ html, body {
     .buttons:hover {
         background: rgb(216, 216, 216);
         box-shadow: inset 4px 4px 5px -1px rgb(147, 147, 147),
-            inset -4px -4px 10px -1px rgb(255, 255, 255);
+            inset -4px -4px 10px -1px #2f84ca;
+        
     }

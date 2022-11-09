@@ -14,6 +14,12 @@ saveButton.addEventListener("click", function () {
 
 function download() {
 
+    var data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        age: document.getElementById('age').value
+    }
+
     var CsvString = "TEST_SUBJECT_NAME,E-MAIL,AGE" + "\r\n";
     CsvString = CsvString + data.name + ',' + data.email + ','
         + data.age + ',', "\r\n";

@@ -2,13 +2,17 @@ body {
     margin: 0;
     padding: 0;
     background-color: #dfe1eb;
+    display: flex;
+    height: 1000px;
+    justify-content: center;
+    align-items: center;
 }
 
 .info {
-    padding: 100px;
+    width: 80%;
+    text-align: center;
     background-color: #dfe1eb;
     color: black;
-    font-family: "", Helvetica, Arial, sans-serif;
     font-size: 20px;
     line-height: 1.42857143;
     font-family: "Oswald", Helvetica, Arial, sans-serif;
@@ -16,29 +20,42 @@ body {
     word-spacing: 3px;
 }
 
-.buttonContainer {
-    padding: 12px;
+.container {
     width: 100%;
+}
+
+.buttonContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-.buttonContainer>.tryButton {
-    margin: 20px 0px 0px 0px;
-    border-radius: 30%;
+.container > h1 {
     text-align: center;
-    font-size: 15px;
-    color: #dfe1eb;
-    background-color: #25316D;
-    padding: 15px 60px 15px 60px;
+    color: black;
+    font-size: 27px;
+    line-height: 1.42857143;
+    font-family: "Oswald", Helvetica, Arial, sans-serif;
+    word-spacing: 3px;
+}
+
+.tryButton {
+    margin-top: 30px;
+    padding: 0px 30px ;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100vw;
+    font-size: 20px;
+    border-color: #005815;
+    background-image: radial-gradient(circle at center, #00a326 0%, #005815 40% );
+    color: rgb(255, 255, 255);
 }
 
 .tryButton:hover {
-    border-color: #97D2EC;
-    background-color: #0e951e5d;
-    font-size: larger;
-    color: black;
+    border-color: #00a326;
+    background-image: radial-gradient(circle at center, #005815 0%, #00a326 80% );
     cursor: pointer;
 }
 

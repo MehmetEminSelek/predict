@@ -1,4 +1,4 @@
-var base_url = 'http://134.122.68.223:8000';
+var base_url = 'https://164.92.205.27:8000';
 const httpMethodPost = 'POST';
 const postHeaders = {
     'Accept': 'application/json',

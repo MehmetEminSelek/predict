@@ -1,7 +1,3 @@
-// function route() {
-//     location.href = "http://127.0.0.1:5500/form/subjectInfo/info.html";
-// }
-
 var cardGame = "/game/card/index.html";
 var snakeGame = "/game/snake/index.html";
 var preGame1 = "/form/informationBoards/pregame1.html";

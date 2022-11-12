@@ -22,7 +22,7 @@ function PopUpInstruction(){
       cancel: false,
       confirm: true
     }
-  }).then(isConfirm => {
+  }).then(isConfirm => { 
     ShowCalibrationPoint();
   });
 
@@ -103,7 +103,7 @@ $(document).ready(function(){
                           confirm: true,
                         }
                       }).then(isConfirm => {
-                          if (isConfirm || precision_measurement > 75) {
+                          if (isConfirm) {
                             //clear the calibration & hide the last middle button
                             ClearCanvas();
                             routeGame();
@@ -128,6 +128,7 @@ $(document).ready(function(){
  * ibration Points
  */
 function ShowCalibrationPoint() {
+  document.getElementById("modalContent").style.display ="none";
   $(".Calibration").show();
   $("#Pt5").hide(); // initially hides the middle button
 }

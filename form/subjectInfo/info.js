@@ -1,4 +1,4 @@
-var base_url = 'https://localhost:8000';
+var base_url = 'http://164.92.205.27:8000';
 const httpMethodPost = 'POST';
 const postHeaders = {
     'Accept': 'application/json',
@@ -13,6 +13,12 @@ saveButton.addEventListener("click", function () {
 });
 
 function download() {
+
+    var data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        age: document.getElementById('age').value
+    }
 
     var CsvString = "TEST_SUBJECT_NAME,E-MAIL,AGE" + "\r\n";
     CsvString = CsvString + data.name + ',' + data.email + ','

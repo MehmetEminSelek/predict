@@ -1,7 +1,3 @@
-// function route() {
-//     location.href = "http://127.0.0.1:5500/form/subjectInfo/info.html";
-// }
-
 var cardGame = "/game/card/index.html";
 var snakeGame = "/game/snake/index.html";
 var preGame1 = "/form/informationBoards/pregame1.html";
@@ -12,10 +8,12 @@ var square = "/form/informationBoards/square.html";
 var webgazer_url = "/WebGazer/www/calibration.html";
 var welcome = "/form/welcome/index.html";
 var game_form = "/form/index.html";
+
 // var predict_url = "http://127.0.0.1:5500"
-var predict_url = "http://164.92.186.163"
+var predict_url = "https://164.92.205.27"
+
 // var game_url = "http://127.0.0.1:5502"
-var game_url = "http://161.35.209.66"
+var game_url = "https://164.92.205.27"
 
 
 function route(path) {

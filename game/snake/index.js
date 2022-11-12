@@ -40,7 +40,7 @@ let snake = [
     { x: 0, y: 0 }
 ];
 var experimentNo = 1;
-var lifeCount = 2;
+var lifeCount = 1;
 
 function counter() {
 

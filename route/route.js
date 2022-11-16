@@ -13,7 +13,7 @@ var game_form = "/form/index.html";
 var predict_url = "https://wafer-experiment.com"
 
 // var game_url = "http://127.0.0.1:5502"
-var game_url = "https://wafer-game.online"
+var game_url = "https://wafer-game.com"
 
 
 function route(path) {

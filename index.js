@@ -63,7 +63,7 @@ function sendValues(value) {
 
 var errorCallback = function (error) {
     if (error.name == 'NotAllowedError') { instructionText.innerHTML = "Webcam Access Not Allowed"; }
-    else if (error.name == 'PermissionDismissedError') { instructionText.innerHTML = "Permission Denied. Please provide Webcam Access."; }
+    else if (error.name == 'PermissionDismissedError') { instructionText.innerHTML = "Permission Denied. Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."; }
 
 };
 
@@ -107,7 +107,7 @@ if (getUserMediaSupported()) {
 
     if (model && (raf_model || affect_model)) {
         enableWebcamButton.style.display = "inline-flex";
-        instructionText.innerHTML = "Please provide Webcam Access."
+        instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
     }
 
     else {
@@ -115,7 +115,7 @@ if (getUserMediaSupported()) {
             model = loadedModel;
             if (raf_model || affect_model) {
                 enableWebcamButton.style.display = "inline-flex";
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
 
@@ -123,7 +123,7 @@ if (getUserMediaSupported()) {
             raf_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
 
@@ -131,7 +131,7 @@ if (getUserMediaSupported()) {
             affect_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
     }

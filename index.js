@@ -13,7 +13,7 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-const base_url = "http://138.68.109.132:8000";
+const base_url = "https://wafer-backend.com:443";
 //const base_url = "http://192.168.1.107:8000";
 xprediction = 0;
 yprediction = 0;
@@ -44,12 +44,13 @@ function connect() {
     });
 }
 
-function handleEngineMessages(message) {
+async function handleEngineMessages(message) {
     if (message.message == "start" && message.sender == "engine") {
         enableCam();
         testSubjectName = message.testSubjectName;
         experimentNo = message.experimentNo;
     } else if (message.message == "stop" && message.sender == "engine") {
+        await new Promise(r => setTimeout(r, 2000));
         resetEverything();
     } else if (message.message != "running" && message.sender == "data") {
         gameData = message.message
@@ -62,7 +63,7 @@ function sendValues(value) {
 
 var errorCallback = function (error) {
     if (error.name == 'NotAllowedError') { instructionText.innerHTML = "Webcam Access Not Allowed"; }
-    else if (error.name == 'PermissionDismissedError') { instructionText.innerHTML = "Permission Denied. Please provide Webcam Access."; }
+    else if (error.name == 'PermissionDismissedError') { instructionText.innerHTML = "Permission Denied. Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."; }
 
 };
 
@@ -106,7 +107,7 @@ if (getUserMediaSupported()) {
 
     if (model && (raf_model || affect_model)) {
         enableWebcamButton.style.display = "inline-flex";
-        instructionText.innerHTML = "Please provide Webcam Access."
+        instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
     }
 
     else {
@@ -114,7 +115,7 @@ if (getUserMediaSupported()) {
             model = loadedModel;
             if (raf_model || affect_model) {
                 enableWebcamButton.style.display = "inline-flex";
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
 
@@ -122,7 +123,7 @@ if (getUserMediaSupported()) {
             raf_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
 
@@ -130,7 +131,7 @@ if (getUserMediaSupported()) {
             affect_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
-                instructionText.innerHTML = "Please provide Webcam Access."
+                instructionText.innerHTML = "Per favore, attendi che l'esaminatore arrivi per un ultimo controllo."
             }
         });
     }

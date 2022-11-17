@@ -24,8 +24,6 @@ const foodColor = "#ecb428";
 const unitSize = 25;
 const timeArray = [];
 let gazerArray = [];
-const base_url = "http://64.225.94.117:8000";
-//const base_url = "http://192.168.1.107:8000";
 let running = false;
 let xVelocity = 15;
 let yVelocity = 0;
@@ -42,21 +40,7 @@ let snake = [
     { x: 0, y: 0 }
 ];
 var experimentNo = 1;
-var lifeCount = 2;
-// connect();
-
-// function connect() {
-//     var socket = new SockJS(base_url + '/engine');
-//     stompClient = Stomp.over(socket);
-//     stompClient.connect({}, function (frame) {
-//         stompClient.subscribe('/engine-listen', function (message) {
-//         });
-//     });
-// }
-
-// function sendValues(sender, code) {
-//     stompClient.send("/engine", {}, JSON.stringify({ 'sender': sender, "message": code, "testSubjectName": textBox, "experimentNo": experimentNo }));
-// }
+var lifeCount = 1;
 
 function counter() {
 

@@ -10,7 +10,7 @@ let matchedCard = 0;
 let disableDeck = false;
 let isPlaying = false;
 let cardOne, cardTwo, timer;
-lifeCount = 2;
+lifeCount = 1;
 
 localStorage.setItem("init", true);
 
@@ -100,7 +100,7 @@ refreshBtn.addEventListener("click", function () {
     //     document.getElementById("refresh").innerHTML = "Next";
     // }
     if (lifeCount == 0) {
-        refreshBtn.textContent = "Next";
+        refreshBtn.textContent = "Avanti";
         refreshBtn.addEventListener("click", function () {
             route(webgazer_url)
         });

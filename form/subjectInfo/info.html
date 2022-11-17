@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Consenso informato</title>
+  <title>Consenso Informato</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
     integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -10,26 +10,35 @@
 </head>
 
 <body>
-  <div class="main-block">
-    <div class="left-part">
-      <i class="fas fa-graduation-cap"></i>
-      <h1>Consenso informato</h1>
+  <div class="bodyContainer">
+    <div class="subtitle">
+      <i class="fas fa-pencil-alt fa-2x"></i>
+      <h2>Registrati qui</h2>
     </div>
-    <form action="/">
-      <div class="title">
-        <i class="fas fa-pencil-alt"></i>
-        <h2>Registrati qui</h2>
+    <div class="inputs">
+      <div id="first">
+        <input class="inputField" id="name" type="text" pattern="[A-Za-z]{40}"
+          placeholder="Inserisci le prime tre lettere del cognome di tua madre.">
       </div>
-      <div class="info">
-        <input id="name" class="fname" type="text" name="name" placeholder="Inserisci le prime tre lettere del cognome di tua madre.">  <!-- string name  -->
-        <input id="phone" type="text" name="name" placeholder="Inserisci le ultime tre cifre del tuo numero di cellulare."> <!-- int phone -->
-        <input id="ref" type="text" name="name" placeholder="Inserisci il tuo genere di riferimento."> <!-- string ref -->
-        <input id="age" type="text" name="name" placeholder="Inserisci la tua età (numero intero)."> <!-- int age -->
-        <input id="edu" type="text" name="name" placeholder="Inserisci il tuo grado di istruzione"> <!-- string edu -->
+      <div><input class="inputField" id="phone" type="tel" maxlength="15"
+          placeholder="Inserisci le ultime tre cifre del tuo numero di cellulare.">
+      </div>
+      <div>
+        <input class="inputField" id="ref" type="text" maxlength="40"
+          placeholder="Inserisci il tuo genere di riferimento.">
+      </div>
+      <div>
+        <input class="inputField" id="age" type="tel" maxlength="2" placeholder="Inserisci la tua età (numero intero).">
+      </div>
+      <div>
+        <input class="inputField" id="edu" type="text" maxlength="70"
+          placeholder="Inserisci il tuo grado di istruzione">
+      </div>
+    </div>
+    <div class="buttonContainer">
+      <div id="submit" class=" tryButton">Invia</div>
+    </div>
 
-      </div>
-      <div id="submit" class="buttons">Invia</div>
-    </form>
   </div>
 </body>
 <script src="/form/subjectInfo/info.js"></script>

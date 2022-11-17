@@ -1,133 +1,75 @@
-html, body {
-    background-color: #dfe1eb;
-    min-height: 100%;
-    }
-    body, div, form, input, select, p { 
-    padding: 0;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     margin: 0;
-    outline: none;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 16px;
-    color: #eee;
-    }
-    body {
-    background: url("/uploads/media/default/0001/01/b5edc1bad4dc8c20291c8394527cb2c5b43ee13c.jpeg") no-repeat center;
-    background-size: cover;
-    }
-    h1, h2 {
-    text-transform: uppercase;
-    font-weight: 400;
-    }
-    h2 {
-    margin: 0 0 0 8px;
-    }
-    .main-block {
+    padding: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.5); 
-    }
-    .left-part, form {
-    padding: 25px;
-    }
-    .left-part {
-    text-align: center;
-    }
-    .fa-graduation-cap {
-    font-size: 72px;
-    }
-    form {
-    background: #11324D;
-    }
-    .title {
+    background-color: #292929;
+}
+
+.iconTitle {
+    background-color: rgb(255, 0, 55);
+}
+
+.subtitle {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-    }
-    .info {
-    display: flex;
-    flex-direction: column;
-    }
-    input, select {
-    padding: 5px;
-    margin-bottom: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #eee;
-    }
-    input::placeholder {
-    color: #eee;
-    }
-    option:focus {
-    border: none;
-    }
-    option {
-    background: black; 
-    border: none;
-    }
-    .checkbox input {
-    margin: 0 10px 0 0;
-    vertical-align: middle;
-    }
-    .checkbox a {
-    color: #26a9e0;
-    }
-    .checkbox a:hover {
-    color: #85d6de;
-    }
-    .btn-item, button {
-    padding: 10px 5px;
+    color: #e4e4e4;
+}
+
+.subtitle>h2 {
+    margin-left: 20px;
+    font-size: 40px;
+}
+
+.inputs {
+    border-radius: 10px;
+    background-color: #ffbe0b;
+    box-shadow: 0px 0px 10px 0px #ffbe0b;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.inputs>div {
     margin-top: 20px;
-    border-radius: 5px; 
-    border: none;
-    background: #26a9e0; 
-    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.inputField {
+    border: 1px solid #474747;
+    border-radius: 100vw;
+    padding: 10px;
+    width: 500px;
+    background-color: #ffbe0b;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tryButton {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #2b2b2b;
+    font-family: 'Oswald';
+    border-radius: 100vw;
     font-size: 15px;
-    font-weight: 400;
-    color: #fff;
-    }
-    .btn-item {
-    display: inline-block;
-    margin: 20px 5px 0;
-    }
-    button {
-    width: 100%;
-    }
-    button:hover, .btn-item:hover {
-    background: #85d6de;
-    }
-    @media (min-width: 568px) {
-    html, body {
-    height: 100%;
-    }
-    .main-block {
-    flex-direction: row;
-    height: calc(100% - 50px);
-    }
-    .left-part, form {
-    flex: 1;
-    height: auto;
-    }
-    }
-    .buttons {
-        padding: 5px 15px 5px 15px;
-        vertical-align: baseline;
-        border-radius: 100vw;
-        background: #11324D;
-        font-weight: bold;
-        font-size: 20px;
-        border: none;
-        box-shadow: 4px 4px 5px -1px rgb(147, 147, 147),
-            -4px -4px 10px -1px rgb(255, 255, 255);
-        transition: box-shadow 5s ease-in-out;
-    }
-    
-    .buttons:hover {
-        background: rgb(216, 216, 216);
-        box-shadow: inset 4px 4px 5px -1px rgb(147, 147, 147),
-            inset -4px -4px 10px -1px #2f84ca;
-        
-    }
+    background-color: #ffbe0b;
+    box-shadow: 0px 0px 10px 0px #ffbe0b;
+    padding: 5px 30px 5px 30px;
+}
+
+.tryButton:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px #ffbe0b;
+}

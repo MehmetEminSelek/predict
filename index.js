@@ -119,7 +119,7 @@ if (getUserMediaSupported()) {
             }
         });
 
-        tf.loadLayersModel('/tf_models/adam/model.json', false).then(function (loadedModel) {
+        tf.loadLayersModel('/tf_models/raf/model.json', false).then(function (loadedModel) {
             raf_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
@@ -127,7 +127,7 @@ if (getUserMediaSupported()) {
             }
         });
 
-        tf.loadLayersModel('/tf_models/mobile/model.json', false).then(function (loadedModel) {
+        tf.loadLayersModel('/tf_models/affect_raf/model.json', false).then(function (loadedModel) {
             affect_model = loadedModel;
             if (model) {
                 enableWebcamButton.classList.remove("removed");
@@ -141,10 +141,15 @@ if (getUserMediaSupported()) {
     instructionText.innerHTML = "getUserMedia() is not supported by your browser"
 }
 
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 
 
 async function predictWebcam() {
     const cam_ctx = webcam_canvas.getContext('2d');
+    await sleep(500);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {

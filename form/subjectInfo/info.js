@@ -3,7 +3,6 @@ const httpMethodPost = 'POST';
 const postHeaders = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
 };
 
 var saveButton = document.getElementById("submit");
@@ -30,6 +29,9 @@ saveButton.addEventListener("click", function () {
 //     x.click();
 //     sendToServer();
 // }
+function dropdown() {
+  document.getElementById("dropButton").classList.toggle("show");
+}
 
 async function sendToServer() {
     var data = {
@@ -38,6 +40,9 @@ async function sendToServer() {
         age: document.getElementById('age').value,
         ref : document.getElementById('ref').value,
         edu : document.getElementById('edu').value,
+        q1 : document.getElementById('q1').value,
+        q2 : document.getElementById('q2').value,
+        q3 : document.getElementById('q3').value
 
     }
     document.getElementById('bodyContainer').style.display = 'none';

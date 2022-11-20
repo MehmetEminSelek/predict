@@ -141,14 +141,10 @@ if (getUserMediaSupported()) {
     instructionText.innerHTML = "getUserMedia() is not supported by your browser"
 }
 
-function sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
 
 
 async function predictWebcam() {
     const cam_ctx = webcam_canvas.getContext('2d');
-    await sleep(1000);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {

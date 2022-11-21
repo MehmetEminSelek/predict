@@ -1,4 +1,5 @@
 var base_url = 'https://wafer-backend.com:443';
+var base_url = "http://localhost:443";
 const httpMethodPost = 'POST';
 const postHeaders = {
     'Accept': 'application/json',

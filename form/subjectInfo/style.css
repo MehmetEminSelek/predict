@@ -43,6 +43,7 @@ body {
 }
 
 .inputField {
+    font-weight: bolder;
     border: 1px solid #474747;
     border-radius: 100vw;
     padding: 10px;

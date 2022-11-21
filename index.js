@@ -13,8 +13,8 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-const base_url = "https://wafer-backend.com:443";
-//const base_url = "http://192.168.1.107:8000";
+//const base_url = "https://wafer-backend.com:443";
+const base_url = "http://localhost:443";
 xprediction = 0;
 yprediction = 0;
 
@@ -149,7 +149,7 @@ function sleep(milliseconds) {
 
 async function predictWebcam() {
     const cam_ctx = webcam_canvas.getContext('2d');
-    await sleep(500);
+    await sleep(1000);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {

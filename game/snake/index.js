@@ -240,7 +240,7 @@ function displayGameOver() {
     if (lifeCount == 0) {
         resetBtn.style.display = "none";
         dataBtn.style.display = "block";
-        dataBtn.textContent = "Next";
+        dataBtn.textContent = "Avanti";
         dataBtn.addEventListener("click", function () {
             route(cardGame);
         });

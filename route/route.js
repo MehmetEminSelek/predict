@@ -23,31 +23,9 @@ function route(path) {
 }
 
 function routeGame() {
-
-    window.open(predict_url + welcome, predict_url + welcome, "width=700,height=500,screenLeft=2500,screenTop=500");
+    
+   
+    window.open(predict_url + welcome, predict_url + welcome, "width=500,height=500,Left=-750,Top=750");
     location.href = game_url + game_form;
 }
 
-
-const popupCenter = ({ url, title, w, h }) => {
-    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
-    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
-
-    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-    const systemZoom = width / window.screen.availWidth;
-    const left = (width - w) / 2 / systemZoom + dualScreenLeft
-    const top = (height - h) / 2 / systemZoom + dualScreenTop
-    const newWindow = window.open(url, title,
-        `
-      scrollbars=yes,
-      width=${w / systemZoom}, 
-      height=${h / systemZoom}, 
-      top=${top}, 
-      left=${left}
-      `
-    )
-
-    if (window.focus) newWindow.focus();
-}

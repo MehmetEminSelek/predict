@@ -22,15 +22,16 @@ Instructions on use can be found in the README repository.
     </head>
     <body LANG="en-US" LINK="#0000ff" DIR="LTR">
       <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
-
-      
-
+      <div id="dot">
+        <span class="dot"></span>   
+      </div>
+    
         <script src="./js/main.js"></script>
         <script src="./js/calibration.js"></script>
         <script src="./js/precision_calculation.js"></script>
         <script src="./js/precision_store_points.js"></script>
 
-        <nav id="webgazerNavbar" class="navbar navbar-default navbar-fixed-top">
+        <nav id="webgazerNavbar" style="display:none" class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <!-- The hamburger menu button -->

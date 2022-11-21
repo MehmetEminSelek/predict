@@ -3,7 +3,7 @@ const cards = document.querySelectorAll(".card"),
     flipsTag = document.querySelector(".flips b"),
     refreshBtn = document.querySelector(".details button");
 
-let maxTime = 5;
+let maxTime = 35;
 let timeLeft = maxTime;
 let flips = 0;
 let matchedCard = 0;
@@ -47,6 +47,7 @@ function matchCards(img1, img2) {
     if (img1 === img2) {
         matchedCard++;
         if (matchedCard == 6 && timeLeft > 0) {
+            document.getElementById("refresh").style.display = "block";
             return clearInterval(timer);
         }
         cardOne.removeEventListener("click", flipCard);

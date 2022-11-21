@@ -47,7 +47,7 @@ function counter() {
     startContainer.style.display = "none";
     const counter = document.getElementById('counter');
     counter.style.display = "block";
-    let value = 5;
+    let value = 4;
 
     const intervalID = setInterval(() => {
         const nextValue = --value;

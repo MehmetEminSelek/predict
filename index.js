@@ -13,8 +13,8 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-//const base_url = "https://wafer-backend.com:443";
-const base_url = "http://localhost:443";
+const base_url = "https://wafer-backend.com:443";
+//const base_url = "http://localhost:443";
 xprediction = 0;
 yprediction = 0;
 

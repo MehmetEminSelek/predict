@@ -13,8 +13,8 @@ var testSubjectName = "Unknown";
 var experimentNo = 0;
 var count = 0;
 var gameData = "running";
-const base_url = "https://wafer-backend.com:443";
-//const base_url = "http://localhost:443";
+//const base_url = "https://wafer-backend.com:443";
+const base_url = "http://localhost:443";
 xprediction = 0;
 yprediction = 0;
 
@@ -165,6 +165,8 @@ async function predictWebcam() {
             var image_tensor = tf.browser.fromPixels(frame2).div(255).resizeBilinear([224, 224]).toFloat().expandDims();
             var result = raf_model.predict(image_tensor);
             var predictedValue = result.arraySync();
+            var date = new Date();
+            var currentTime = date.toLocaleString();
             value_raf = {
                 "id": count,
                 "sender": testSubjectName,
@@ -179,6 +181,7 @@ async function predictWebcam() {
                 "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
                 "xcord": xprediction.toFixed(2),
                 "ycord": yprediction.toFixed(2),
+                "timeStamp": currentTime.toString(),
                 "status": gameData
             }
             result = affect_model.predict(image_tensor);
@@ -197,6 +200,7 @@ async function predictWebcam() {
                 "disgust": parseFloat(predictedValue[0][1] * 100).toFixed(2),
                 "xcord": xprediction.toFixed(2),
                 "ycord": yprediction.toFixed(2),
+                "timeStamp": currentTime.toString(),
                 "status": gameData
             }
             sendValues(value_raf);

@@ -28,37 +28,42 @@
       <div><input class="inputField" id="phone" type="tel" maxlength="3"
           placeholder="Inserisci le ultime tre cifre del tuo numero di cellulare.">
       </div>
+      <select id="gender" class="form-select" aria-label="Default select example">
+        <option value="Inserisci il tuo genere di riferimento." selected>Inserisci il tuo genere di riferimento.</option>
+        <option value="Femmina cisgender">Femmina cisgender</option>
+        <option value="Maschio cisgender">Maschio cisgender</option>
+        <option value="Femmina transgender">Femmina transgender</option>
+        <option value="Maschio transgender">Maschio transgender</option>
+        <option value="Agender">Agender</option>
+        <option value="Non specificarlo">Non specificarlo</option>
+      </select>
       <div>
-        <input class="inputField" id="ref" type="text" maxlength="40"
-          placeholder="Inserisci il tuo genere di riferimento.">
+        <input id="edu" class="inputField" id="age" type="tel" maxlength="2"
+          placeholder="Inserisci la tua età (numero intero).">
       </div>
-      <div>
-        <input class="inputField" id="age" type="tel" maxlength="2" placeholder="Inserisci la tua età (numero intero).">
-      </div>
-      <div>
-        <input class="inputField" id="edu" type="text" maxlength="70"
-          placeholder="Inserisci il tuo grado di istruzione">
-      </div>
+      <select id="edu" class="form-select" aria-label="Default select example">
+        <option value="Inserisci il tuo grado di istruzione" selected>Inserisci il tuo grado di istruzione</option>
+        <option value="Licenza media">Licenza media</option>
+        <option value="Diploma superiori">Diploma superiori</option>
+        <option value="Laurea triennale">Laurea triennale</option>
+        <option value="Laurea magistrale">Laurea magistrale</option>
+        <option value="Laurea magistrale<">Laurea magistrale<< /option>
+        <option value="Master universitario">Master universitario</option>
+        <option value="Dottorato">Dottorato</option>
+      </select>
       <div>
         <input class="inputField" id="q1" type="text" maxlength="70"
-          placeholder="Quante ore hai giocato ai videogiochi nell'ultima settimana ?">
+          placeholder="Hai mai giocato prima d'ora a Snake?">
       </div>
       <div>
         <input class="inputField" id="q2" type="text" maxlength="70"
-          placeholder="Quanti anni avevi la prima volta che hai giocato ai videogiochi?">
+          placeholder="Hai mai giocato prima d'ora a Memory?">
       </div>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" style="">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+      <div>
+        <input class="inputField" id="q3" type="text" maxlength="70"
+          placeholder="Inserisci il numero identificativo che ti è stato fornito.">
       </div>
     </div>
-
     <div class="buttonContainer">
       <div id="submit" class=" tryButton">Invia</div>
     </div>

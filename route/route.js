@@ -25,7 +25,7 @@ function route(path) {
 function routeGame() {
     
    
-    window.open(predict_url + welcome, predict_url + welcome, "width=500,height=500,Left=-750,Top=750");
+    window.open(predict_url + welcome, predict_url + welcome, "width=300,height=300,Left=-750,Top=1050");
     location.href = game_url + game_form;
 }
 

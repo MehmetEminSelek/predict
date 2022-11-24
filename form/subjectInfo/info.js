@@ -39,11 +39,11 @@ async function sendToServer() {
         name: document.getElementById('name').value,
         phone: document.getElementById('phone').value,
         age: document.getElementById('age').value,
-        ref : document.getElementById('ref').value,
+        ref: document.getElementById('q3').value,
         edu : document.getElementById('edu').value,
         q1 : document.getElementById('q1').value,
         q2 : document.getElementById('q2').value,
-        q3 : document.getElementById('q3').value
+        q3: document.getElementById('gender').value
 
     }
     document.getElementById('bodyContainer').style.display = 'none';

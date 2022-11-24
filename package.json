@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "webgazer": "^3.0.0"
   }
 }

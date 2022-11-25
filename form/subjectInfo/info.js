@@ -31,7 +31,7 @@ saveButton.addEventListener("click", function () {
 //     sendToServer();
 // }
 function dropdown() {
-  document.getElementById("dropButton").classList.toggle("show");
+    document.getElementById("dropButton").classList.toggle("show");
 }
 
 async function sendToServer() {
@@ -39,11 +39,11 @@ async function sendToServer() {
         name: document.getElementById('name').value,
         phone: document.getElementById('phone').value,
         age: document.getElementById('age').value,
-        ref: document.getElementById('q3').value,
-        edu : document.getElementById('edu').value,
-        q1 : document.getElementById('q1').value,
-        q2 : document.getElementById('q2').value,
-        q3: document.getElementById('gender').value
+        ref: document.getElementById('ref').value,
+        edu: document.getElementById('edu').value,
+        gender: document.getElementById('gender').value,
+        snake: document.getElementById('snake').value,
+        memory: document.getElementById('memory').value,
 
     }
     document.getElementById('bodyContainer').style.display = 'none';
@@ -54,9 +54,9 @@ async function sendToServer() {
         headers: postHeaders,
         body: JSON.stringify(data)
     })
-    .catch(err => console.log(err))
-    .finally(() => {
-                document.getElementById('loader').style.display = "none";
-                route(preGame1);
-    });
+        .catch(err => console.log(err))
+        .finally(() => {
+            document.getElementById('loader').style.display = "none";
+            route(preGame1);
+        });
 }

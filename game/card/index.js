@@ -3,7 +3,7 @@ const cards = document.querySelectorAll(".card"),
     flipsTag = document.querySelector(".flips b"),
     refreshBtn = document.querySelector(".details button");
 
-let maxTime = 35;
+let maxTime = 15;
 let timeLeft = maxTime;
 let flips = 0;
 let matchedCard = 0;
@@ -13,6 +13,7 @@ let cardOne, cardTwo, timer;
 lifeCount = 1;
 
 localStorage.setItem("init", true);
+waiting();
 
 function initTimer() {
     if (timeLeft <= 0) {
@@ -21,6 +22,21 @@ function initTimer() {
     }
     timeLeft--;
     timeTag.innerText = timeLeft;
+}
+
+async function waiting() {
+    document.getElementById("wrapper").style.display = "none";
+    document.getElementById("gameContainer").style.display = "none";
+    await new Promise(r =>
+        //TODO change to 120000
+        setTimeout(r, 120));
+    document.getElementById("gameContainer").style.display = "inline-block";
+}
+
+function startGame() {
+    document.getElementById("gameContainer").style.display = "none";
+    document.getElementById("wrapper").style.display = "inline-block";
+    shuffleCard();
 }
 
 function flipCard({ target: clickedCard }) {

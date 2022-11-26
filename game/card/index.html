@@ -10,7 +10,25 @@
 </head>
 
 <body>
-  <div class="wrapper">
+  <div id="gameContainer">
+    <div id="centerBoard">
+      <canvas id="gameBoard" width="500" height="500"></canvas>
+      <div id="gameboardContainer">
+        <div id="gridHeader" class="gridHeader">
+          <p style="font-size:75px; font-family: Bungee Spice">
+            CARD GAME</p>
+        </div>
+        <div id="gridHeader" class="gridHeader gridText">
+          <p>Per favore, accoppia le carte con lo stesso simbolo</p>
+        </div>
+        <div id="gridBody">
+          <button class="buttons play snakeGameBtn" onclick="startGame()" id="startSnakeBtn">Avanti</button>
+        </div>
+      </div>
+      <canvas id="webCanvas" width="360" height="240">Canvas not supported</canvas>
+    </div>
+  </div>
+  <div id="wrapper" class="wrapper">
     <ul class="cards">
       <li class="card">
         <div class="view front-view">

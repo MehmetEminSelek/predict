@@ -149,7 +149,7 @@ function sleep(milliseconds) {
 
 async function predictWebcam() {
     const cam_ctx = webcam_canvas.getContext('2d');
-    await sleep(1000);
+    await sleep(850);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {

@@ -45,8 +45,19 @@ async function sendToServer() {
         gender: document.getElementById('gender').value,
         snake: document.getElementById('snake').value,
         memory: document.getElementById('memory').value,
-
     }
+    try {
+        Object.values(data).every((value) => {
+            if (value == "") {
+                swal("Si prega di rispondere a tutte le domande!", value, "error");
+                throw new Error("Please fill all the fields");
+            }
+        });
+    } catch (error) {
+        swal("Si prega di rispondere a tutte le domande!", "", "error");
+        return;
+    }
+
     document.getElementById('bodyContainer').style.display = 'none';
     document.getElementById('loader').style.display = 'block';
 

@@ -33,7 +33,15 @@ saveButton.addEventListener("click", function () {
 function dropdown() {
     document.getElementById("dropButton").classList.toggle("show");
 }
-//test
+
+function validateFields(data) {
+    Object.values(data).forEach((value) => {
+        if (value == "") {
+            swal("Si prega di rispondere a tutte le domande!", value, "error");
+            throw new Error("Please fill all the fields");
+        }
+    });
+}
 
 async function sendToServer() {
     var data = {
@@ -46,17 +54,8 @@ async function sendToServer() {
         snake: document.getElementById('snake').value,
         memory: document.getElementById('memory').value,
     }
-    try {
-        Object.values(data).every((value) => {
-            if (value == "") {
-                swal("Si prega di rispondere a tutte le domande!", value, "error");
-                throw new Error("Please fill all the fields");
-            }
-        });
-    } catch (error) {
-        swal("Si prega di rispondere a tutte le domande!", "", "error");
-        return;
-    }
+
+    validateFields(data);
 
     document.getElementById('bodyContainer').style.display = 'none';
     document.getElementById('loader').style.display = 'block';

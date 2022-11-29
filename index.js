@@ -149,7 +149,7 @@ function sleep(milliseconds) {
 
 async function predictWebcam() {
     const cam_ctx = webcam_canvas.getContext('2d');
-    await sleep(950);
+    await sleep(875);
     cam_ctx.drawImage(video, 0, 0, width, height);
     const frame = cam_ctx.getImageData(0, 0, width, height);
     model.estimateFaces(frame).then(function (predictions) {
@@ -166,7 +166,7 @@ async function predictWebcam() {
             var result = raf_model.predict(image_tensor);
             var predictedValue = result.arraySync();
             var date = new Date();
-            var currentTime = date.toLocaleString();
+            var currentTime = date.toLocaleString() + ":" + date.getMilliseconds();
             value_raf = {
                 "id": count,
                 "sender": testSubjectName,

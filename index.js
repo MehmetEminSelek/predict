@@ -153,7 +153,7 @@ async function predictWebcam() {
     cam_ctx.drawImage(video, 0, 0, width, height);
     await sleep(300);
     const frame = cam_ctx.getImageData(0, 0, width, height);
-    await sleep(300);
+    await sleep(200);
     model.estimateFaces(frame).then(function (predictions) {
         if (predictions.length === 1) {
             count++;

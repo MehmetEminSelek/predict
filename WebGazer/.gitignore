@@ -34,12 +34,13 @@ www/data/src/WebGazerETRA2018Dataset_Release20180420/
 www/data/src/P*/
 www/data/FramesDataset/
 www/data/src/webgazer.js
+www/webgazer.js
 *__pycache__/
 *.pyc
 .idea/
 docs/
 dist/*.map
-node_modules
+www/webgazer.js
 dist/*.min.js
 dist/tensorflow.js
 dist/tensorflow.commonjs2.js

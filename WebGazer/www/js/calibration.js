@@ -16,14 +16,13 @@ function ClearCanvas(){
 function PopUpInstruction(){
   ClearCanvas();
   swal({
-    title:"Calibrazione",
-    text: "Fare clic su ciascuno dei 9 punti sullo schermo. Devi fare clic su ogni punto 5 volte finché non diventa giallo. Questo calibrerà i tuoi movimenti oculari.",
+    title:"Calibration",
+    text: "Please click on each of the 9 points on the screen. You must click on each point 5 times till it goes yellow. This will calibrate your eye movements.",
     buttons:{
       cancel: false,
       confirm: true
     }
   }).then(isConfirm => {
-    
     ShowCalibrationPoint();
   });
 
@@ -78,8 +77,8 @@ $(document).ready(function(){
 
             // notification for the measurement process
             swal({
-              title: "Calcolo della misura",
-              text: "Per favore non muovere il mouse e fissare il punto centrale per i prossimi 5 secondi. Questo ci permetterà di calcolare l'accuratezza delle nostre previsioni.",
+              title: "Calculating measurement",
+              text: "Please don't move your mouse & stare at the middle dot for the next 5 seconds. This will allow us to calculate the accuracy of our predictions.",
               closeOnEsc: false,
               allowOutsideClick: false,
               closeModal: true
@@ -94,20 +93,19 @@ $(document).ready(function(){
                       stop_storing_points_variable(); // stop storing the prediction points
                       var past50 = webgazer.getStoredPoints(); // retrieve the stored points
                       var precision_measurement = calculatePrecision(past50);
-                      var accuracyLabel = "<a>Precisione | "+precision_measurement+"%</a>";
+                      var accuracyLabel = "<a>Accuracy | "+precision_measurement+"%</a>";
                       document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
                       swal({
-                        title: "La tua misura di precisione è " + precision_measurement + "%",
+                        title: "Your accuracy measure is " + precision_measurement + "%",
                         allowOutsideClick: false,
                         buttons: {
-                          cancel: "Ricalibrare",
+                          cancel: "Recalibrate",
                           confirm: true,
                         }
                       }).then(isConfirm => {
-                          if (isConfirm) {
+                          if (isConfirm){
                             //clear the calibration & hide the last middle button
                             ClearCanvas();
-                            routeGame();
                           } else {
                             //use restart function to restart the calibration
                             document.getElementById("Accuracy").innerHTML = "<a>Not yet Calibrated</a>";
@@ -125,11 +123,9 @@ $(document).ready(function(){
 });
 
 /**
- * Show the C
- * ibration Points
+ * Show the Calibration Points
  */
 function ShowCalibrationPoint() {
-  document.getElementById("modalContent").style.display ="none";
   $(".Calibration").show();
   $("#Pt5").hide(); // initially hides the middle button
 }

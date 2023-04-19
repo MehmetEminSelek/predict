@@ -240,7 +240,7 @@ function displayGameOver() {
     if (lifeCount == 0) {
         resetBtn.style.display = "none";
         dataBtn.style.display = "block";
-        dataBtn.textContent = "Avanti";
+        dataBtn.textContent = "다음";
         dataBtn.addEventListener("click", function () {
             route(cardGame);
         });

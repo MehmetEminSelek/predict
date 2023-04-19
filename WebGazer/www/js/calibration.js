@@ -78,7 +78,7 @@ $(document).ready(function(){
 
             // notification for the measurement process
             swal({
-              title: "Calcolo della misura",
+              title: "측정값 계산",
               text: "중앙지점으로부터 마우스를 움직이지 말아주세요. OK 를 누른 후  5초동안 중앙지점을 바라봐 주세요. 정확도에 대한 저희의 예측값을 계산하기 위함입니다.",
               closeOnEsc: false,
               allowOutsideClick: false,
@@ -100,7 +100,7 @@ $(document).ready(function(){
                         title: "정확도 측정값은 다음과 같습니다" + precision_measurement + "%",
                         allowOutsideClick: false,
                         buttons: {
-                          cancel: "Ricalibrare",
+                          cancel: "Re-calebrate",
                           confirm: true,
                         }
                       }).then(isConfirm => {

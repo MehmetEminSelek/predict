@@ -19,55 +19,54 @@
   <div id="bodyContainer" class="bodyContainer">
     <div class="subtitle">
       <i class="fas fa-pencil-alt fa-2x"></i>
-      <h2>Registrati qui</h2>
+      <h2>여기에 등록하세요</h2>
     </div>
     <div class="inputs">
       <div id="first">
         <input class="inputField" id="name" type="text" pattern="[A-Za-z]{40}"
-          placeholder="Inserisci le prime tre lettere del cognome di tua madre.">
+          placeholder="성씨를 입력하세요.">
       </div>
       <div><input class="inputField" id="phone" type="number" maxlength="3"
-          placeholder="Inserisci le ultime tre cifre del tuo numero di cellulare.">
+          placeholder="핸드폰 번호 마지막 3자리 를 입력해주세요.">
       </div>
       <select style="background-color:#ffbe0b; color : #757564;font-weight: bold;" id="gender" class="form-select"
         aria-label="Default select example">
-        <option value="Inserisci il tuo genere di riferimento." selected>Inserisci il tuo genere di riferimento.
+        <option value="Inserisci il tuo genere di riferimento." selected>성별을 입력해주세요.
         </option>
-        <option style="font-weight:bold" value="Femmina cisgender">Femmina cisgender</option>
-        <option style="font-weight:bold" value="Maschio cisgender">Maschio cisgender</option>
-        <option style="font-weight:bold" value="Femmina transgender">Femmina transgender</option>
-        <option style="font-weight:bold" value="Maschio transgender">Maschio transgender</option>
-        <option style="font-weight:bold" value="Agender">Agender</option>
-        <option style="font-weight:bold" value="Non specificarlo">Non specificarlo</option>
+        <option style="font-weight:bold" value="Femmina cisgender">시스젠더 여성</option>
+        <option style="font-weight:bold" value="Maschio cisgender">시스젠더 남성</option>
+        <option style="font-weight:bold" value="Femmina transgender">트랜스젠더 여성</option>
+        <option style="font-weight:bold" value="Maschio transgender">트랜스젠더 남성</option>
+        <option style="font-weight:bold" value="Agender">넌 바이너리</option>
+        <option style="font-weight:bold" value="Non specificarlo">대답하고싶지 않습니다</option>
       </select>
       <div>
-        <input id="age" class="inputField" type="tel" maxlength="2" placeholder="Inserisci la tua età (numero intero).">
+        <input id="age" class="inputField" type="tel" maxlength="2" placeholder="나이를 입력해주세요.(숫자만)">
       </div>
       <select style="background-color:#ffbe0b; color : #757564;font-weight: bold;" id="edu" class="form-select">
-        <option style="font-weight:bold" value="Inserisci il tuo grado di istruzione" selected>Inserisci il tuo grado di
-          istruzione</option>
-        <option style="font-weight:bold" value="Licenza media">Licenza media</option>
-        <option style="font-weight:bold" value="Diploma superiori">Diploma superiori</option>
-        <option style="font-weight:bold" value="Laurea triennale">Laurea triennale</option>
-        <option style="font-weight:bold" value="Laurea magistrale">Laurea magistrale</option>
-        <option style="font-weight:bold" value="Master universitario">Master universitario</option>
-        <option style="font-weight:bold" value="Dottorato">Dottorato</option>
+        <option style="font-weight:bold" value="Inserisci il tuo grado di istruzione" selected>최종학력을 입력해주세요.</option>
+        <option style="font-weight:bold" value="Licenza media">초동학교 졸업</option>
+        <option style="font-weight:bold" value="Diploma superiori">중학교 졸업</option>
+        <option style="font-weight:bold" value="Laurea triennale">고등학교 졸업</option>
+        <option style="font-weight:bold" value="Laurea magistrale">학사 학위 취득</option>
+        <option style="font-weight:bold" value="Master universitario">석사학위 취득</option>
+        <option style="font-weight:bold" value="Dottorato">박사학위 취득</option>
       </select>
       <div>
         <input class="inputField" id="snake" type="text" maxlength="70"
-          placeholder="Hai mai giocato prima d'ora a Snake?">
+          placeholder="Snake 게임 을 해보신적이 있나요?">
       </div>
       <div>
         <input class="inputField" id="memory" type="text" maxlength="70"
-          placeholder="Hai mai giocato prima d'ora a Memory?">
+          placeholder="Memory 게임을 해보신적이 있나요?">
       </div>
       <div>
         <input class="inputField" id="ref" type="number" maxlength="70"
-          placeholder="Inserisci il numero identificativo che ti è stato fornito.">
+          placeholder="지급된 ID(숫자) 를 입력해주세요.">
       </div>
     </div>
     <div class="buttonContainer">
-      <div id="submit" class=" tryButton">Invia</div>
+      <div id="submit" class=" tryButton">제출</div>
     </div>
   </div>
   <div id="loader" class="loader"></div>

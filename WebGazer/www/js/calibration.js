@@ -17,7 +17,7 @@ function PopUpInstruction(){
   ClearCanvas();
   swal({
     title:"Calibrazione",
-    text: "Fare clic su ciascuno dei 9 punti sullo schermo. Devi fare clic su ogni punto 5 volte finché non diventa giallo. Questo calibrerà i tuoi movimenti oculari.",
+    text: "화면에 보이시는 9개의 점들을 클릭해주세요. 각 점을 5번 누르셔서 점의 색깔이 노란색이 되도록 해주세요. 이 작업으로 눈의 움직임을 보정합니다. 15초동안 기다리신 후에 '보정' 버튼 을 눌러주세요.",
     buttons:{
       cancel: false,
       confirm: true
@@ -79,7 +79,7 @@ $(document).ready(function(){
             // notification for the measurement process
             swal({
               title: "Calcolo della misura",
-              text: "Per favore non muovere il mouse e fissare il punto centrale per i prossimi 5 secondi. Questo ci permetterà di calcolare l'accuratezza delle nostre previsioni.",
+              text: "중앙지점으로부터 마우스를 움직이지 말아주세요. OK 를 누른 후  5초동안 중앙지점을 바라봐 주세요. 정확도에 대한 저희의 예측값을 계산하기 위함입니다.",
               closeOnEsc: false,
               allowOutsideClick: false,
               closeModal: true
@@ -97,7 +97,7 @@ $(document).ready(function(){
                       var accuracyLabel = "<a>Precisione | "+precision_measurement+"%</a>";
                       document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
                       swal({
-                        title: "La tua misura di precisione è " + precision_measurement + "%",
+                        title: "정확도 측정값은 다음과 같습니다" + precision_measurement + "%",
                         allowOutsideClick: false,
                         buttons: {
                           cancel: "Ricalibrare",

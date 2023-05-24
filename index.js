@@ -18,7 +18,11 @@ const base_url = "https://wafer-backend.com:443";
 xprediction = 0;
 yprediction = 0;
 
+const timer = new Date();
+const ms = timer.getMilliseconds();
+
 connect();
+console.log("Connected to Server." + " " + timer.toLocaleTimeString() + ":" + ms);
 startWebgazer();
 
 function startWebgazer() {
@@ -148,6 +152,7 @@ function sleep(milliseconds) {
 
 
 async function predictWebcam() {
+    console.log("Predicting Webcam" + " " + timer.toLocaleTimeString() + ":" + ms);
     const cam_ctx = webcam_canvas.getContext('2d');
     await sleep(300);
     cam_ctx.drawImage(video, 0, 0, width, height);
@@ -208,6 +213,8 @@ async function predictWebcam() {
             sendValues(value_raf);
             sendValues(value_affect);
             gameData = "running";
+            const timer1 = new Date();
+            console.log("Values sent" + " " + timer1.toLocaleTimeString() + ":" + timer1.getMilliseconds());
         }
         if (control)
             window.requestAnimationFrame(predictWebcam);

@@ -117,7 +117,7 @@ refreshBtn.addEventListener("click", function () {
     //     document.getElementById("refresh").innerHTML = "Next";
     // }
     if (lifeCount == 0) {
-        refreshBtn.textContent = "다음";
+        refreshBtn.textContent = "次";
         refreshBtn.addEventListener("click", function () {
             route(webgazer_url)
         });

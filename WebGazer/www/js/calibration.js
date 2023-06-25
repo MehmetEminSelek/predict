@@ -16,8 +16,8 @@ function ClearCanvas(){
 function PopUpInstruction(){
   ClearCanvas();
   swal({
-    title:"Calibrazione",
-    text: "화면에 보이시는 9개의 점들을 클릭해주세요. 각 점을 5번 누르셔서 점의 색깔이 노란색이 되도록 해주세요. 이 작업으로 눈의 움직임을 보정합니다. 15초동안 기다리신 후에 '보정' 버튼 을 눌러주세요.",
+    title:"校正する",
+    text: "画面上の9つの点をクリックしてください。 黄色になるまで各ポイントを 5 回クリックする必要があります。",
     buttons:{
       cancel: false,
       confirm: true
@@ -78,8 +78,8 @@ $(document).ready(function(){
 
             // notification for the measurement process
             swal({
-              title: "측정값 계산",
-              text: "중앙지점으로부터 마우스를 움직이지 말아주세요. OK 를 누른 후  5초동안 중앙지점을 바라봐 주세요. 정확도에 대한 저희의 예측값을 계산하기 위함입니다.",
+              title: "測定値の計算",
+              text: "マウスを中心点から動かさないでください。 「OK」をクリックした後、中心点を5秒間見つめてください。 これにより、予測の精度を計算できるようになります。",
               closeOnEsc: false,
               allowOutsideClick: false,
               closeModal: true
@@ -97,7 +97,7 @@ $(document).ready(function(){
                       var accuracyLabel = "<a>Precisione | "+precision_measurement+"%</a>";
                       document.getElementById("Accuracy").innerHTML = accuracyLabel; // Show the accuracy in the nav bar.
                       swal({
-                        title: "정확도 측정값은 다음과 같습니다" + precision_measurement + "%",
+                        title: "正確さ：" + precision_measurement + "%",
                         allowOutsideClick: false,
                         buttons: {
                           cancel: "Re-calebrate",
